@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generic USB port configuration for all boards -->
+<!-- Possible values for port:
+    name - port name
+    id - port identifier in /sys/devices/platform/soc/
+    mode - port mode (host, device, dual)
+    noswitch - explicitly denies role switch attempts -->
+<usbports>
+    <port name="usb2_0" id="ee080200.usb-phy" mode="dual" noswitch="true" />
+    <port name="usb2_1" id="ee0a0100.usb" mode="host"/>
+    <port name="usb2_2" id="ee0c0100.usb" mode="host"/>
+    <port name="usb3_0" id="ee000000.usb" mode="host"/>
+    <!-- Salvator XS H3 2.0 -->
+    <port name="usb2_3" id="ee0e0200.usb-phy" mode="dual"/>
+</usbports>
