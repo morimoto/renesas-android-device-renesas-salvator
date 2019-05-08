@@ -22,5 +22,5 @@ include device/renesas/common/BoardConfigCommon.mk
 BOARD_WIFI_VENDOR := realtek
 
 # Kernel build rules
-BOARD_KERNEL_CMDLINE :=
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 TARGET_KERNEL_CONFIG := android_q_salvator-x_defconfig
