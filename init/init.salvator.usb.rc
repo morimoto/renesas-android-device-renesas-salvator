@@ -84,3 +84,36 @@ on boot
 
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
     setprop sys.usb.configfs 1
+
+on property:sys.usb.ffs.ready=0 && property:sys.usb.config=adb
+    write /config/usb_gadget/g1/idProduct 0x4e11
+
+on property:sys.usb.config=mtp && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x4e11
+
+on property:sys.usb.config=mtp,adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x4e11
+
+on property:sys.usb.config=ptp && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x4e12
+
+on property:sys.usb.config=ptp,adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x4e12
+
+on property:sys.usb.config=accessory && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x2d00
+
+on property:sys.usb.config=accessory,adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x2d01
+
+on property:sys.usb.config=audio_source && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x2d02
+
+on property:sys.usb.config=audio_source,adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x2d03
+
+on property:sys.usb.config=accessory,audio_source && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x2d04
+
+on property:sys.usb.config=accessory,audio_source,adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0x2d05
