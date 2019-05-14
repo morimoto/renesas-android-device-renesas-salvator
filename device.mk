@@ -31,7 +31,7 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-service.salvator \
-    android.hardware.audio.effect@2.0-service.renesas
+    android.hardware.audio.effect@4.0-service.renesas
 
 PRODUCT_COPY_FILES += \
     device/renesas/salvator/hal/audio/policy/audio_policy_configuration.xml:$(TARGET_COPY_OUT_ODM)/etc/audio_policy_configuration.xml \
