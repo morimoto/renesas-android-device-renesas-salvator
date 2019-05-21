@@ -161,7 +161,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-<!--    <hal format="hidl">
+    <hal format="hidl">
         <name>android.hardware.gnss</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -170,7 +170,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+<!--    <hal format="hidl">
         <name>android.hardware.automotive.evs</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
