@@ -19,7 +19,9 @@ TARGET_BOOTLOADER_BOARD_NAME := salvator-x
 include device/renesas/common/BoardConfigCommon.mk
 
 # Wi-Fi
-BOARD_WIFI_VENDOR := realtek
+BOARD_WIFI_VENDOR                := realtek
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_realtek
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_realtek
 
 # Kernel build rules
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
