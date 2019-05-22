@@ -13,4 +13,3 @@
 /vendor/bin/hw/android.hardware.automotive.vehicle@2.0-service.salvator         u:object_r:hal_vehicle_default_exec:s0
 /vendor/bin/hw/android.hardware.sensors@1.0-service.salvator                    u:object_r:hal_sensors_default_exec:s0
 /vendor/bin/hw/android.hardware.audio@2.0-service.salvator                      u:object_r:hal_audio_default_exec:s0
-/vendor/bin/hw/android.hardware.bluetooth@1.0-service.salvator                  u:object_r:hal_bluetooth_default_exec:s0
