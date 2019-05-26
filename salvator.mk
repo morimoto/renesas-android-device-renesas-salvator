@@ -13,6 +13,7 @@
 # limitations under the License.
 
 TARGET_BOARD_PLATFORM ?= r8a7795
+RELEASE_NUMBER ?= test
 
 $(call inherit-product, device/renesas/salvator/device.mk)
 
@@ -21,3 +22,5 @@ PRODUCT_DEVICE := salvator
 PRODUCT_BRAND := Renesas
 PRODUCT_MODEL := Salvator-X-$(TARGET_BOARD_PLATFORM)
 PRODUCT_MANUFACTURER := Renesas
+
+BUILD_VERSION_TAGS += $(TARGET_BOARD_PLATFORM) $(RELEASE_NUMBER)
