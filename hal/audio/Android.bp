@@ -62,4 +62,5 @@ cc_binary {
     ],
 
     init_rc: ["android.hardware.audio@2.0-service.salvator.rc"],
+    vintf_fragments: ["android.hardware.audio@2.0-service.salvator.xml"],
 }
