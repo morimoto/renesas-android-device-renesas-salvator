@@ -28,16 +28,6 @@ PRODUCT_COPY_FILES += \
     device/renesas/salvator/init/ueventd.salvator.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
     device/renesas/salvator/init/init.recovery.salvator.rc:root/init.recovery.salvator.rc
 
-# Audio
-PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-service.salvator \
-    android.hardware.audio.effect@4.0-service.renesas
-
-PRODUCT_COPY_FILES += \
-    device/renesas/salvator/hal/audio/policy/audio_policy_configuration.xml:$(TARGET_COPY_OUT_ODM)/etc/audio_policy_configuration.xml \
-    device/renesas/salvator/hal/audio/policy/audio_policy_volumes.xml:$(TARGET_COPY_OUT_ODM)/etc/audio_policy_volumes.xml \
-    device/renesas/salvator/hal/audio/policy/default_volume_tables.xml:$(TARGET_COPY_OUT_ODM)/etc/default_volume_tables.xml
-
 # Wi-Fi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service

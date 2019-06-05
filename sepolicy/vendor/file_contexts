@@ -11,4 +11,6 @@
 
 # Salvator HALs
 /vendor/bin/hw/android.hardware.sensors@1.0-service.salvator                    u:object_r:hal_sensors_default_exec:s0
-/vendor/bin/hw/android.hardware.audio@2.0-service.salvator                      u:object_r:hal_audio_default_exec:s0
+
+# Same process HALs installed by platform into /vendor
+/vendor/lib(64)?/hw/audio.primary.salvator.so                                   u:object_r:same_process_hal_file:s0
