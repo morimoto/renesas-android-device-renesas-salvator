@@ -43,6 +43,7 @@ on boot
     insmod /vendor/lib/modules/pl2303.ko
     insmod /vendor/lib/modules/ftdi_sio.ko
     insmod /vendor/lib/modules/cdc-acm.ko
+    insmod /vendor/lib/modules/8812au.ko
 
     mount configfs none /config
 
