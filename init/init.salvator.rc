@@ -55,6 +55,10 @@ on early-boot
     insmod /vendor/lib/modules/vspm.ko
     insmod /vendor/lib/modules/composer.ko
 
+    # Setup CAN interface
+    exec -- /system/bin/ip link set can0 up type can bitrate 125000
+    exec -- /system/bin/ip link set can1 up type can bitrate 125000
+
 on boot
     write /sys/power/wake_lock ws10_suspend_wa
 
