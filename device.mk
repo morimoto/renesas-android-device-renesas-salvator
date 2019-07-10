@@ -32,6 +32,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service
 
+# Bluetooth HAL (system/bt/vendor_libs/linux/interface)
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-service.btlinux
+
 # Touchcreen configuration
 PRODUCT_COPY_FILES += \
     device/renesas/salvator/touchscreen_skeleton.idc:$(TARGET_COPY_OUT_ODM)/usr/idc/touchscreen_skeleton.idc
