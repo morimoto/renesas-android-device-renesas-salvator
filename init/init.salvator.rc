@@ -52,7 +52,6 @@ on early-boot
     # Update dm-verity state and set partition.*.verified properties
     verity_update_state
 
-    insmod /vendor/lib/modules/vspm.ko
     insmod /vendor/lib/modules/composer.ko
 
     # Setup CAN interface
@@ -67,6 +66,7 @@ on boot
     chmod 0666 /sys/class/rfkill/rfkill1/state
 
     insmod /vendor/lib/modules/qos.ko
+    insmod /vendor/lib/modules/vspm.ko
     insmod /vendor/lib/modules/vspm_if.ko
     insmod /vendor/lib/modules/mmngr.ko
     insmod /vendor/lib/modules/mmngrbuf.ko
