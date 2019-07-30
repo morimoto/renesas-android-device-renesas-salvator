@@ -73,11 +73,6 @@ on boot
     insmod /vendor/lib/modules/uvcs_drv.ko
     insmod /vendor/lib/modules/xtensa-hifi.ko
 
-on property:ro.boot.bootreason=watchdog
-    chmod 777 /sys/fs/pstore
-    mkdir /data/vendor/ramoops_logger 777 system log
-    start ramoops_logger
-
 service pvrsrvctl /vendor/bin/pvrsrvctl --start
     class hal
     critical
@@ -115,9 +110,3 @@ service bugreport /system/bin/dumpstate -d -p -B -z \
 service watchdogd /sbin/watchdogd 10 20
     oneshot
     seclabel u:r:watchdogd:s0
-
-service ramoops_logger /vendor/bin/ramoops_logger
-    user system
-    group log
-    oneshot
-    seclabel u:r:ramoops_logger:s0
