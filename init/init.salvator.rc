@@ -110,3 +110,10 @@ service bugreport /system/bin/dumpstate -d -p -B -z \
 service watchdogd /sbin/watchdogd 10 20
     oneshot
     seclabel u:r:watchdogd:s0
+
+on property:sys.boot_completed=1 && property:ro.boot.irqbalance_start=1
+    start irqbalance
+
+#Run irqbalancer with banned balancing for pvrsrvkm
+service irqbalance /vendor/bin/irqbalance -f -n pvrsrvkm
+    oneshot
