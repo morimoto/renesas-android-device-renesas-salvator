@@ -47,8 +47,8 @@ on boot
 
     mount configfs none /config
 
-    mkdir /config/usb_gadget/g1 0770 shell shell
-    mkdir /config/usb_gadget/g1/strings/0x409 0770 shell shell
+    mkdir /config/usb_gadget/g1 0770
+    mkdir /config/usb_gadget/g1/strings/0x409 0770
     write /config/usb_gadget/g1/bcdUSB 0x0200
     write /config/usb_gadget/g1/idVendor 0x18d1
     write /config/usb_gadget/g1/bcdDevice 0x0440
@@ -63,8 +63,8 @@ on boot
     mkdir /config/usb_gadget/g1/functions/accessory.gs2
     mkdir /config/usb_gadget/g1/functions/audio_source.gs3
 
-    mkdir /config/usb_gadget/g1/configs/b.1 0770 shell shell
-    mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
+    mkdir /config/usb_gadget/g1/configs/b.1 0770
+    mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770
 
     write /config/usb_gadget/g1/os_desc/b_vendor_code 0x1
     write /config/usb_gadget/g1/os_desc/qw_sign "MSFT100"
@@ -75,7 +75,7 @@ on boot
 
     mkdir /dev/usb-ffs 0775 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
-    mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
+    mount functionfs adb /dev/usb-ffs/adb rmode=0770,fmode=0660,uid=2000,gid=2000
     mkdir /dev/usb-ffs/mtp 0770 mtp mtp
     mkdir /dev/usb-ffs/ptp 0770 mtp mtp
     mount functionfs mtp /dev/usb-ffs/mtp rmode=0770,fmode=0660,uid=1024,gid=1024,no_disconnect=1
@@ -84,37 +84,4 @@ on boot
     write /config/usb_gadget/g1/configs/b.1/MaxPower 120
 
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
-    setprop sys.usb.configfs 1
-
-on property:sys.usb.ffs.ready=0 && property:sys.usb.config=adb
-    write /config/usb_gadget/g1/idProduct 0x4e11
-
-on property:sys.usb.config=mtp && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x4e11
-
-on property:sys.usb.config=mtp,adb && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x4e11
-
-on property:sys.usb.config=ptp && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x4e12
-
-on property:sys.usb.config=ptp,adb && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x4e12
-
-on property:sys.usb.config=accessory && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x2d00
-
-on property:sys.usb.config=accessory,adb && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x2d01
-
-on property:sys.usb.config=audio_source && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x2d02
-
-on property:sys.usb.config=audio_source,adb && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x2d03
-
-on property:sys.usb.config=accessory,audio_source && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x2d04
-
-on property:sys.usb.config=accessory,audio_source,adb && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0x2d05
+    setprop sys.usb.configfs 2
