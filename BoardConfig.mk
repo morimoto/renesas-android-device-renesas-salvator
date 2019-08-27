@@ -24,5 +24,4 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_realtek
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_realtek
 
 # Kernel build rules
-BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 TARGET_KERNEL_CONFIG := android_q_salvator-x_defconfig
