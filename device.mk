@@ -34,7 +34,7 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth HAL (system/bt/vendor_libs/linux/interface)
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-service.btlinux
+    android.hardware.bluetooth@1.0-service.salvator
 
 # Touchcreen configuration
 PRODUCT_COPY_FILES += \

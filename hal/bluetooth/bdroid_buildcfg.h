@@ -5,6 +5,8 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
+#define BLE_VND_INCLUDED        FALSE
+
 #define BNEP_INCLUDED           FALSE
 #define BTA_PAN_INCLUDED        FALSE
 
