@@ -6,7 +6,6 @@ on early-fs
     insmod lib/modules/extcon-core.ko
     insmod lib/modules/extcon-usb-gpio.ko
     insmod lib/modules/phy-rcar-gen3-usb2.ko
-    insmod lib/modules/usbcore.ko
     insmod lib/modules/renesas_usbhs.ko
 
     mkdir -p /config

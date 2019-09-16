@@ -17,7 +17,6 @@ on boot
     insmod /vendor/lib/modules/extcon-core.ko
     insmod /vendor/lib/modules/extcon-usb-gpio.ko
     insmod /vendor/lib/modules/phy-rcar-gen3-usb2.ko
-    insmod /vendor/lib/modules/usbcore.ko
     insmod /vendor/lib/modules/renesas_usbhs.ko
     insmod /vendor/lib/modules/renesas_usb3.ko
 
