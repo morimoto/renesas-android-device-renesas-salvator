@@ -18,3 +18,4 @@
 
 # Same process HALs installed by platform into /vendor
 /vendor/lib(64)?/hw/audio.primary.salvator.so                                   u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/hw/audio.r_submix.salvator.so                                  u:object_r:same_process_hal_file:s0
