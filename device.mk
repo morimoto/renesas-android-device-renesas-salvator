@@ -28,10 +28,6 @@ PRODUCT_COPY_FILES += \
     device/renesas/salvator/init/ueventd.salvator.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
     device/renesas/salvator/init/init.recovery.salvator.rc:root/init.recovery.salvator.rc
 
-# Wi-Fi
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service
-
 # Bluetooth HAL (system/bt/vendor_libs/linux/interface)
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-service.salvator
