@@ -50,13 +50,4 @@
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
 
-    <exception
-            package="com.android.car.messenger">
-        <!-- Contacts -->
-        <permission name="android.permission.READ_CONTACTS" fixed="false"/>
-
-        <!-- SMS -->
-        <permission name="android.permission.SEND_SMS" fixed="false"/>
-        <permission name="android.permission.READ_SMS" fixed="false"/>
-    </exception>
 </permissions>
