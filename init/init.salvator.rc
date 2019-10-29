@@ -14,8 +14,17 @@
 
 import /vendor/etc/init/hw/init.salvator.usb.rc
 
+service pvrsrvctl /vendor/bin/pvrsrvctl --start
+    class hal
+    critical
+    user root
+    group root
+    oneshot
+    seclabel u:r:pvrsrvctl:s0
+
 on early-init
     mount debugfs debugfs /sys/kernel/debug
+    start pvrsrvctl
 
 on init
     start vendor.vehicle-2.0
@@ -72,14 +81,6 @@ on boot
     insmod /vendor/lib/modules/mmngrbuf.ko
     insmod /vendor/lib/modules/uvcs_drv.ko
     insmod /vendor/lib/modules/xtensa-hifi.ko
-
-service pvrsrvctl /vendor/bin/pvrsrvctl --start
-    class hal
-    critical
-    user root
-    group root
-    oneshot
-    seclabel u:r:pvrsrvctl:s0
 
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
         -iwlan0 -Dnl80211 \
