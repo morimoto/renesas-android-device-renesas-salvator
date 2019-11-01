@@ -28,6 +28,7 @@ on early-init
 
 on init
     start vendor.vehicle-2.0
+    setrlimit memlock 8519680 8519680
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
