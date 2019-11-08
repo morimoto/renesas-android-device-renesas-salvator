@@ -15,7 +15,7 @@
 import /vendor/etc/init/hw/init.salvator.usb.rc
 
 service pvrsrvctl /vendor/bin/pvrsrvctl --start
-    class hal
+    class early_hal
     critical
     user root
     group root
