@@ -27,7 +27,6 @@ on early-init
     start pvrsrvctl
 
 on init
-    start vendor.vehicle-2.0
     setrlimit memlock 8519680 8519680
 
     # Support legacy paths
@@ -119,3 +118,9 @@ on property:sys.boot_completed=1 && property:ro.boot.irqbalance_start=1
 #Run irqbalancer with banned balancing for pvrsrvkm
 service irqbalance /vendor/bin/irqbalance -f -n pvrsrvkm
     oneshot
+
+# We need to wait for cold_boot_done. This is the earliest point to
+# start any binderized HAL, because only after this binders became ready
+# in /dev
+on property:ro.boottime.init.cold_boot_wait=*
+    trigger coldboot_done
