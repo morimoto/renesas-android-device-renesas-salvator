@@ -26,7 +26,6 @@ on early-boot
     insmod /vendor/lib/modules/ohci-platform.ko
     insmod /vendor/lib/modules/xhci-hcd.ko
     insmod /vendor/lib/modules/xhci-plat-hcd.ko
-    insmod /vendor/lib/modules/usbhid.ko
     insmod /vendor/lib/modules/usb-storage.ko
     insmod /vendor/lib/modules/uvcvideo.ko
     insmod /vendor/lib/modules/btbcm.ko
