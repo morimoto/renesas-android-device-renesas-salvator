@@ -120,7 +120,9 @@ service irqbalance /vendor/bin/irqbalance -f -n pvrsrvkm
     oneshot
 
 # We need to wait for cold_boot_done. This is the earliest point to
-# start any binderized HAL, because only after this binders became ready
-# in /dev
-on property:ro.boottime.init.cold_boot_wait=*
+# start any binderized HAL, because only after this /dev stuff became ready
+on early-init
+    # 60s delay is synced system/core/init/init.cpp. If this file will not
+    # be created after 60 seconds init fails with fatal error
+    wait /dev/.coldboot_done 60
     trigger coldboot_done
