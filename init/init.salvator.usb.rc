@@ -42,7 +42,7 @@ on early-boot
     insmod /vendor/lib/modules/pl2303.ko
     insmod /vendor/lib/modules/ftdi_sio.ko
     insmod /vendor/lib/modules/cdc-acm.ko
-    insmod /vendor/lib/modules/8812au.ko
+    exec u:r:vendor_modprobe:s0 root root -- /vendor/bin/toybox_vendor insmod /vendor/lib/modules/8812au.ko ifname=wlan0 if2name=p2p0
 
     mount configfs none /config
 

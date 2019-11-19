@@ -35,3 +35,19 @@ PRODUCT_PACKAGES += \
 # Touchcreen configuration
 PRODUCT_COPY_FILES += \
     device/renesas/salvator/touchscreen_skeleton.idc:$(TARGET_COPY_OUT_ODM)/usr/idc/touchscreen_skeleton.idc
+
+PRODUCT_PACKAGES += \
+    libwpa_client \
+    libwifilogd \
+    wpa_supplicant.conf \
+    p2p_supplicant.conf \
+    libwifi-hal \
+    android.hardware.wifi.supplicant@1.0-service \
+    android.hardware.wifi.supplicant@1.1-service \
+    android.hardware.wifi.supplicant@1.2-service \
+    android.hardware.wifi@1.0-service \
+    android.hardware.wifi@1.0-service-lib \
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.direct.interface=p2p0 \
+    wifi.interface=wlan0

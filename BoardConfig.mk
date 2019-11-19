@@ -19,9 +19,17 @@ TARGET_BOOTLOADER_BOARD_NAME := salvator-x
 include device/renesas/common/BoardConfigCommon.mk
 
 # Wi-Fi
-BOARD_WIFI_VENDOR                := realtek
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_realtek
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_realtek
+BOARD_WIFI_VENDOR := realtek
+ifeq ($(BOARD_WIFI_VENDOR), realtek)
+    WPA_SUPPLICANT_VERSION := VER_0_8_X
+    BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+    BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_rtl
+    BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_rtl
+    BOARD_HOSTAPD_DRIVER := NL80211
+    BOARD_WLAN_DEVICE := rtl
+    CFI_INCLUDE_PATHS += device/linaro/poplar/wifi/wpa_supplicant_8_lib
+endif
+
 
 # Kernel build rules
 TARGET_KERNEL_CONFIG := android_salvator_defconfig
