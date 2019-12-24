@@ -39,14 +39,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libwpa_client \
     libwifilogd \
-    wpa_supplicant.conf \
-    p2p_supplicant.conf \
-    libwifi-hal \
-    android.hardware.wifi.supplicant@1.0-service \
-    android.hardware.wifi.supplicant@1.1-service \
-    android.hardware.wifi.supplicant@1.2-service \
-    android.hardware.wifi@1.0-service \
-    android.hardware.wifi@1.0-service-lib \
+    p2p_supplicant.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.direct.interface=p2p0 \
