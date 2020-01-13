@@ -82,6 +82,9 @@ on boot
     insmod /vendor/lib/modules/uvcs_drv.ko
     insmod /vendor/lib/modules/xtensa-hifi.ko
 
+    # default country code
+    setprop ro.boot.wificountrycode 00
+
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
         -ip2p0 -Dnl80211 -c/vendor/etc/wifi/p2p_supplicant.conf \
         -N \
