@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import /vendor/etc/init/hw/init.common.rc
 import /vendor/etc/init/hw/init.salvator.usb.rc
 
 service pvrsrvctl /vendor/bin/pvrsrvctl --start
