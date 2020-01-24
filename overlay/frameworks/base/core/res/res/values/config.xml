@@ -23,6 +23,8 @@
     <string-array translatable="false" name="config_tether_wifi_regexs">
         <item>"wlan0"</item>
     </string-array>
+    <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
+    <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
     <!-- Default supported concurrent socket keepalive slots per transport type, used by
     ConnectivityManager.createSocketKeepalive() for calculating the number of keepalive
     offload slots that should be reserved for privileged access. This string array should be
