@@ -1,4 +1,4 @@
-# Copyright 2018 The Android Open Source Project
+# Copyright 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,101 +15,6 @@
 import /vendor/etc/init/hw/init.common.rc
 import /vendor/etc/init/hw/init.salvator.usb.rc
 
-service pvrsrvctl /vendor/bin/pvrsrvctl --start
-    class early_hal
-    critical
-    user root
-    group root
-    oneshot
-    seclabel u:r:pvrsrvctl:s0
-
-on early-init
-    mount debugfs debugfs /sys/kernel/debug
-    start pvrsrvctl
-    write /sys/kernel/debug/sched_features NO_ENERGY_AWARE
-    write /sys/devices/system/cpu/cpufreq/boost 1
-
-on init
-    setrlimit memlock 8519680 8519680
-
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
-
-on property:sys.boot_completed=1
-    write /sys/kernel/debug/sched_features ENERGY_AWARE
-    write /sys/block/dm-0/queue/read_ahead_kb 128
-    write /sys/block/dm-1/queue/read_ahead_kb 128
-    write /sys/block/dm-2/queue/read_ahead_kb 128
-    write /sys/block/dm-3/queue/read_ahead_kb 128
-    write /sys/block/dm-4/queue/read_ahead_kb 128
-    write /sys/block/dm-5/queue/read_ahead_kb 128
-    write /sys/block/dm-6/queue/read_ahead_kb 128
-    write /sys/block/dm-7/queue/read_ahead_kb 128
-    write /sys/block/mmcblk0/queue/read_ahead_kb 128
-    write /sys/devices/system/cpu/cpufreq/boost 0
-
-on property:ro.boot.wd_start=1
-    start watchdogd
-
-on late-init
-    mkdir /mnt/tee 0700 root root
-    start tee_supplicant
-
-on fs
-    mount_all /vendor/etc/fstab.salvator --early
-
-on late-fs
-    mount_all /vendor/etc/fstab.salvator --late
-    write /sys/block/dm-0/queue/read_ahead_kb 2048
-    write /sys/block/dm-1/queue/read_ahead_kb 2048
-    write /sys/block/dm-2/queue/read_ahead_kb 2048
-    write /sys/block/dm-3/queue/read_ahead_kb 2048
-    write /sys/block/dm-4/queue/read_ahead_kb 2048
-    write /sys/block/dm-5/queue/read_ahead_kb 2048
-    write /sys/block/dm-6/queue/read_ahead_kb 2048
-    write /sys/block/dm-7/queue/read_ahead_kb 2048
-    write /sys/block/mmcblk0/queue/read_ahead_kb 2048
-
-on post-fs-data
-    mkdir /data/vendor/wifi 0770 wifi wifi
-    mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/vendor/wifi/wpa 0770 wifi wifi
-    mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
-
-    # Set indication (checked by vold) that we have finished this action
-    setprop vold.post_fs_data_done 1
-
-on early-boot
-    setprop wifi.interface wlan0
-
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
-
-    insmod /vendor/lib/modules/composer.ko
-
-    # Setup CAN interface
-    exec -- /system/bin/ip link set can0 up type can bitrate 125000
-    exec -- /system/bin/ip link set can1 up type can bitrate 125000
-
-on boot
-    write /sys/power/wake_lock ws10_suspend_wa
-
-    # Wireless regulators control
-    chmod 0666 /sys/class/rfkill/rfkill0/state
-    chmod 0666 /sys/class/rfkill/rfkill1/state
-    chmod 0664 /dev/rfkill
-    insmod /vendor/lib/modules/qos.ko
-    insmod /vendor/lib/modules/vspm.ko
-    insmod /vendor/lib/modules/vspm_if.ko
-    insmod /vendor/lib/modules/mmngr.ko
-    insmod /vendor/lib/modules/mmngrbuf.ko
-    insmod /vendor/lib/modules/uvcs_drv.ko
-    insmod /vendor/lib/modules/xtensa-hifi.ko
-
-    # default country code
-    setprop ro.boot.wificountrycode 00
-
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
         -ip2p0 -Dnl80211 -c/vendor/etc/wifi/p2p_supplicant.conf \
         -N \
@@ -123,36 +28,21 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
      disabled
      oneshot
 
-service tee_supplicant /vendor/bin/tee-supp
-    critical
-    user root
-    group root
-    seclabel u:r:tee:s0
+on init
+    # Support legacy paths
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
-# bugreport is triggered by holding down volume down, volume up and power
-service bugreport /system/bin/dumpstate -d -p -B -z \
-        -o /data/user_de/0/com.android.shell/files/bugreports/bugreport
-    class main
-    disabled
-    oneshot
-    keycodes 114 115 116
+on fs
+    mount_all /vendor/etc/fstab.salvator --early
 
-# Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
-service watchdogd /sbin/watchdogd 10 20
-    oneshot
-    seclabel u:r:watchdogd:s0
+on late-fs
+    mount_all /vendor/etc/fstab.salvator --late
 
-on property:sys.boot_completed=1 && property:ro.boot.irqbalance_start=1
-    start irqbalance
+on early-boot
+    setprop wifi.interface wlan0
 
-#Run irqbalancer with banned balancing for pvrsrvkm
-service irqbalance /vendor/bin/irqbalance -f -n pvrsrvkm
-    oneshot
-
-# We need to wait for cold_boot_done. This is the earliest point to
-# start any binderized HAL, because only after this /dev stuff became ready
-on early-init
-    # 60s delay is synced system/core/init/init.cpp. If this file will not
-    # be created after 60 seconds init fails with fatal error
-    wait /dev/.coldboot_done 60
-    trigger coldboot_done
+on boot
+    # Wireless regulators control
+    chmod 0666 /sys/class/rfkill/rfkill1/state
+    chmod 0664 /dev/rfkill
