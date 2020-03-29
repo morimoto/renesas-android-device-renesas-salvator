@@ -18,8 +18,8 @@ on post-fs
     mkdir /mnt/tee 0700 root root
     start tee_supplicant
 
-service tee_supplicant /sbin/tee-supp_recovery
-    class main
+service tee_supplicant /bin/tee-supp_recovery
     user root
     group root
     seclabel u:r:tee_recovery:s0
+    stdio_to_kmsg
