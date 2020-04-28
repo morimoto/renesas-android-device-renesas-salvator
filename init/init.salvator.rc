@@ -41,3 +41,4 @@ on boot
     # Wireless regulators control
     chmod 0666 /sys/class/rfkill/rfkill1/state
     chmod 0664 /dev/rfkill
+    chmod 0666 /sys/bus/platform/devices/bd9571mwv-regulator/backup_mode
