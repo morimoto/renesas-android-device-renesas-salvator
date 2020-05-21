@@ -37,4 +37,27 @@ BOARD_VENDOR_KERNEL_MODULES += \
 	$(KERNEL_MODULES_OUT)/btrtl.ko \
 	$(KERNEL_MODULES_OUT)/btusb.ko
 
+# Realtek Wi-Fi driver
+BOARD_VENDOR_KERNEL_MODULES += \
+	$(KERNEL_MODULES_OUT)/8812au.ko
+
+WLAN_KM_SRC             := hardware/realtek/wlan/rtl8812au_km
+WLAN_KM_OUT             := $(PRODUCT_OUT)/obj/WLAN_KM_OBJ
+WLAN_KM_OUT_ABS         := $(abspath $(WLAN_KM_OUT))
+WLAN_KM                 := $(WLAN_KM_OUT)/8812au.ko
+
+$(WLAN_KM):
+	mkdir -p $(WLAN_KM_OUT_ABS)
+	cp -pR $(WLAN_KM_SRC)/* $(WLAN_KM_OUT_ABS)/
+	$(ANDROID_MAKE) -C $(WLAN_KM_OUT_ABS) $(KERNEL_COMPILE_FLAGS) \
+		KERNELDIR=$(KERNEL_OUT_ABS) \
+		WORKDIR=$(WLAN_KM_OUT_ABS) rcar_defconfig
+	$(ANDROID_MAKE) -C $(WLAN_KM_OUT_ABS) $(KERNEL_COMPILE_FLAGS) \
+		KERNELDIR=$(KERNEL_OUT_ABS) WORKDIR=$(WLAN_KM_OUT_ABS) \
+		M=$(WLAN_KM_OUT_ABS) modules
+	cp $(WLAN_KM) $(KERNEL_MODULES_OUT)/
+
+KERNEL_EXT_MODULES += \
+	$(WLAN_KM)
+
 include device/renesas/common/ModulesCommon.mk
