@@ -41,7 +41,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
 BOARD_VENDOR_KERNEL_MODULES += \
 	$(KERNEL_MODULES_OUT)/8812au.ko
 
-WLAN_KM_SRC             := hardware/realtek/wlan/rtl8812au_km
+WLAN_KM_SRC             := hardware/realtek/rtl8812au_km
 WLAN_KM_OUT             := $(PRODUCT_OUT)/obj/WLAN_KM_OBJ
 WLAN_KM_OUT_ABS         := $(abspath $(WLAN_KM_OUT))
 WLAN_KM                 := $(WLAN_KM_OUT)/8812au.ko
