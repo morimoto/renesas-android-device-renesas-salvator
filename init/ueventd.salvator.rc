@@ -19,5 +19,6 @@
 /dev/teepriv0                                       0660    system          keystore
 /dev/ttyUSB0                                        0666    system          system
 /dev/ttyACM0                                        0666    system          system
+/dev/ttyACM1                                        0666    system          system
 /dev/ttySC2                                         0660    bluetooth       bluetooth
 /dev/block/platform/soc/ee140000.sd/by-name/pst     0600    system          system
