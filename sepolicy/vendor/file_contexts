@@ -2,6 +2,7 @@
 # GPS TTY devices
 /dev/ttyUSB0                                                                    u:object_r:tty_device:s0
 /dev/ttyACM0                                                                    u:object_r:tty_device:s0
+/dev/ttyACM1                                                                    u:object_r:tty_device:s0
 
 # BT TTY
 /dev/ttySC1                                                                     u:object_r:tty_device:s0
