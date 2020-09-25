@@ -28,11 +28,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
      disabled
      oneshot
 
-on init
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
-
 on fs
     mount_all /vendor/etc/fstab.salvator --early
 
